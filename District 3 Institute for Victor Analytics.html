@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The District 3 Institute for Victor Analytics</title>
+<style>
+:root{
+  --bg:#e9eee8;--panel:#f7f9f5;--ink:#1c2a26;--mute:#566660;--line:#b9c6bd;
+  --circuit:#0f7a6a;--gold:#c58a00;--alert:#b3261e;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1a18;--panel:#16251f;--ink:#e3efe8;--mute:#93a9a0;--line:#2b4239;
+  --circuit:#3fd0b6;--gold:#f0b429;--alert:#ff7a70;}}
+:root[data-theme="dark"]{--bg:#0f1a18;--panel:#16251f;--ink:#e3efe8;--mute:#93a9a0;--line:#2b4239;--circuit:#3fd0b6;--gold:#f0b429;--alert:#ff7a70;}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Georgia,"Times New Roman",serif}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+h1,h2,h3,.sans{font-family:"Trebuchet MS","Segoe UI",Helvetica,Arial,sans-serif}
+header.top{border-bottom:2px solid var(--ink);background:var(--panel)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:12px;padding-bottom:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;font-family:"Trebuchet MS",Helvetica,sans-serif;font-weight:700}
+.brand small{display:block;font-weight:400;color:var(--mute);font-size:13px}
+nav a{color:var(--ink);margin-left:18px;font:14px "Trebuchet MS",Helvetica,sans-serif;text-decoration:none;border-bottom:1px solid var(--circuit)}
+nav a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.hero{padding:56px 0 40px}
+.hero h1{font-size:clamp(34px,6vw,60px);line-height:1.05;margin:0 0 18px;letter-spacing:-.02em;max-width:15ch}
+.hero p{max-width:60ch;font-size:19px;color:var(--mute)}
+.tally{display:flex;gap:0;margin-top:30px;border:2px solid var(--ink);background:var(--panel);flex-wrap:wrap}
+.tally div{flex:1 1 180px;padding:16px 18px;border-right:1px solid var(--line)}
+.tally b{display:block;font:700 40px "Trebuchet MS",Helvetica,sans-serif;color:var(--circuit)}
+.tally span{font:14px "Trebuchet MS",Helvetica,sans-serif;color:var(--mute)}
+section{padding:36px 0;border-top:1px solid var(--line)}
+h2{font-size:28px;margin:0 0 12px}
+h3{font-size:19px;margin:0 0 6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:20px}
+.grid>div{border-left:4px solid var(--circuit);padding-left:14px}
+.grid p{margin:0;color:var(--mute);font-size:16px}
+.panel{background:var(--panel);border:2px solid var(--ink);padding:22px;margin-top:20px}
+.row{display:grid;grid-template-columns:130px 1fr 54px;gap:10px;align-items:center;margin:9px 0;font:14px "Trebuchet MS",Helvetica,sans-serif}
+.bar{height:16px;background:var(--line);position:relative}
+.bar i{position:absolute;inset:0 auto 0 0;background:var(--circuit);width:0;transition:width .7s ease}
+.row.top i{background:var(--gold)}
+.row em{font-style:normal;text-align:right;font-weight:700}
+.ctl{display:flex;flex-wrap:wrap;gap:16px;margin:16px 0}
+.ctl label{flex:1 1 200px;font:14px "Trebuchet MS",Helvetica,sans-serif}
+.ctl input{width:100%;accent-color:var(--circuit)}
+button{font:700 15px "Trebuchet MS",Helvetica,sans-serif;background:var(--ink);color:var(--bg);border:0;padding:11px 18px;cursor:pointer}
+#verdict{margin-top:14px;padding:12px 14px;border:2px dashed var(--gold);font:15px "Trebuchet MS",Helvetica,sans-serif;min-height:48px}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font:15px "Trebuchet MS",Helvetica,sans-serif;min-width:520px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{border-bottom:2px solid var(--ink)}
+blockquote{margin:20px 0 0;padding:6px 0 6px 18px;border-left:4px solid var(--gold);font-style:italic}
+blockquote cite{display:block;font:14px "Trebuchet MS",Helvetica,sans-serif;font-style:normal;color:var(--mute);margin-top:6px}
+footer{border-top:2px solid var(--ink);background:var(--panel);padding:24px 0;font:13px/1.5 "Trebuchet MS",Helvetica,sans-serif;color:var(--mute)}
+@media(max-width:560px){.row{grid-template-columns:90px 1fr 46px}}
+@media(prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="brand">
+    <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 28 L15 18 L22 23 L32 10" fill="none" stroke="var(--circuit)" stroke-width="3"/><circle cx="32" cy="10" r="3.5" fill="var(--gold)"/></svg>
+    <span>District 3 Institute for Victor Analytics<small>Est. 41st Hunger Games &middot; Technology Division, Panem</small></span>
+  </div>
+  <nav><a href="#method">Method</a><a href="#model">Try the model</a><a href="#record">Record</a></nav>
+</div></header>
+
+<main class="wrap">
+<div class="hero">
+  <h1>The Games deserve the right winner.</h1>
+  <p>Chance is for the tributes. For the Gamemakers, we offer data. Since the 26th Games, District 3 has told the Capitol who would win before the cannons finished firing, and our forecasts have never missed.</p>
+  <div class="tally">
+    <div><b>50 / 50</b><span>Victors correctly selected, consecutive Games</span></div>
+    <div><b>1,224</b><span>Tributes modeled since founding</span></div>
+    <div><b>0.4 s</b><span>Time to re-rank 24 tributes after any event</span></div>
+  </div>
+</div>
+
+<section id="method">
+  <h2>How a Gamemaker chooses a winner with us</h2>
+  <p>A Games is a story with a deadline. The Institute turns an arena into a dashboard so the Head Gamemaker can steer toward the ending the Capitol will remember, and the tribute most likely to deliver it.</p>
+  <div class="grid">
+    <div><h3>Survival Index</h3><p>Combines training scores, body composition, water and fire skill, and how long a tribute has gone without sponsor gifts.</p></div>
+    <div><h3>Audience Heat</h3><p>Live sentiment from Capitol viewing parlors and District squares. A winner nobody cheers for is a failed Games.</p></div>
+    <div><h3>Arena Fit</h3><p>Matches each tribute against the terrain, hazards, and weather you've scheduled. Swamp, glacier, or clock face: we have priors for all.</p></div>
+    <div><h3>Narrative Yield</h3><p>Scores alliances, rivalries, and betrayals. Our model flags the moment a tribute becomes a symbol, so you can act before the crowd does.</p></div>
+  </div>
+</section>
+
+<section id="model">
+  <h2>Try the Victor Model</h2>
+  <p>Adjust what you value. The ranking recalculates for this year's sample tributes. All figures are illustrative and simulated.</p>
+  <div class="panel">
+    <div class="ctl">
+      <label>Survival weight <span id="vs">50</span>%<input type="range" id="ws" min="0" max="100" value="50"></label>
+      <label>Audience heat weight <span id="vh">30</span>%<input type="range" id="wh" min="0" max="100" value="30"></label>
+      <label>Narrative weight <span id="vn">20</span>%<input type="range" id="wn" min="0" max="100" value="20"></label>
+    </div>
+    <div id="rows" aria-live="polite"></div>
+    <div id="verdict"></div>
+    <p style="margin:14px 0 0"><button id="roll">Simulate a bloodbath</button></p>
+  </div>
+</section>
+
+<section id="record">
+  <h2>Our record</h2>
+  <p>Accuracy is measured at the Feast, the last point a Gamemaker can still change the outcome.</p>
+  <div class="panel">
+    <svg viewBox="0 0 640 220" width="100%" role="img" aria-label="Forecast accuracy by era: Institute 100 percent, intuition-based selection 31 percent">
+      <g stroke="var(--line)"><line x1="40" y1="20" x2="620" y2="20"/><line x1="40" y1="70" x2="620" y2="70"/><line x1="40" y1="120" x2="620" y2="120"/><line x1="40" y1="170" x2="620" y2="170"/></g>
+      <g font-family="Trebuchet MS,Helvetica,sans-serif" font-size="12" fill="var(--mute)"><text x="4" y="24">100%</text><text x="10" y="74">75%</text><text x="10" y="124">50%</text><text x="10" y="174">25%</text></g>
+      <polyline fill="none" stroke="var(--alert)" stroke-width="3" stroke-dasharray="6 4" points="40,126 120,114 200,142 280,102 360,150 440,120 520,138 620,124"/>
+      <polyline fill="none" stroke="var(--circuit)" stroke-width="4" points="40,160 120,110 200,60 280,30 360,22 440,20 520,20 620,20"/>
+      <g font-family="Trebuchet MS,Helvetica,sans-serif" font-size="13" font-weight="700"><text x="432" y="12" fill="var(--circuit)">Institute</text><text x="500" y="156" fill="var(--alert)">Intuition</text></g>
+      <g font-family="Trebuchet MS,Helvetica,sans-serif" font-size="12" fill="var(--mute)"><text x="30" y="200">Games 26</text><text x="270" y="200">Games 50</text><text x="560" y="200">Games 75</text></g>
+    </svg>
+  </div>
+  <div class="scroll" style="margin-top:20px"><table>
+    <caption class="sans" style="text-align:left;font-weight:700;padding-bottom:6px">Recent forecasts (selected Games)</caption>
+    <tr><th>Games</th><th>Arena</th><th>Forecast victor</th><th>Called at</th><th>Result</th></tr>
+    <tr><td>71st</td><td>Flooded city</td><td>Male, District 4</td><td>Day 2</td><td>Correct</td></tr>
+    <tr><td>72nd</td><td>Frozen basin</td><td>Female, District 9</td><td>Day 1</td><td>Correct</td></tr>
+    <tr><td>73rd</td><td>Clockwork forest</td><td>Male, District 7</td><td>Hour 6</td><td>Correct</td></tr>
+    <tr><td>74th</td><td>Desert canyon</td><td>Female, District 12</td><td>Day 3</td><td>Correct</td></tr>
+    <tr><td>75th</td><td>Reaping redux</td><td>Pending review</td><td>n/a</td><td>Under audit</td></tr>
+  </table></div>
+  <blockquote>"I used to guess. Now I open a dashboard, and the arena ends the way I planned it."
+    <cite>Senior Gamemaker, name withheld on request</cite></blockquote>
+</section>
+</main>
+
+<footer><div class="wrap">
+  The District 3 Institute for Victor Analytics is a fictional organization created for entertainment. Forecasts shown are simulated. The Institute accepts no liability for tribute outcomes, mutt behavior, or Capitol taste.
+</div></footer>
+
+<script>
+(function(){
+  var T=[
+    {n:"Mara, D1",s:78,h:84,r:60},{n:"Quill, D3",s:55,h:48,r:92},{n:"Brannoch, D2",s:94,h:66,r:44},
+    {n:"Wren, D7",s:70,h:72,r:81},{n:"Dessa, D4",s:82,h:58,r:55},{n:"Pike, D12",s:40,h:90,r:88}
+  ];
+  var rows=document.getElementById("rows"),verdict=document.getElementById("verdict");
+  var ids=["ws","wh","wn"],outs=["vs","vh","vn"];
+  function jitter(){T.forEach(function(t){["s","h","r"].forEach(function(k){t[k]=Math.max(10,Math.min(99,t[k]+Math.round((Math.random()-.5)*30)))})})}
+  function render(){
+    var w=ids.map(function(i){return +document.getElementById(i).value});
+    outs.forEach(function(o,i){document.getElementById(o).textContent=w[i]});
+    var sum=w[0]+w[1]+w[2]||1;
+    var list=T.map(function(t){return {n:t.n,v:Math.round((t.s*w[0]+t.h*w[1]+t.r*w[2])/sum)}}).sort(function(a,b){return b.v-a.v});
+    rows.innerHTML="";
+    list.forEach(function(x,i){
+      var d=document.createElement("div");d.className="row"+(i===0?" top":"");
+      d.innerHTML='<span></span><div class="bar"><i></i></div><em></em>';
+      d.children[0].textContent=x.n;d.children[2].textContent=x.v;
+      rows.appendChild(d);
+      requestAnimationFrame(function(){d.querySelector("i").style.width=x.v+"%"});
+    });
+    var gap=list[0].v-list[1].v;
+    verdict.textContent="Forecast victor: "+list[0].n+". "+(gap<4?"Margin is thin. Recommend an arena event to separate the top two.":"Margin is comfortable. No intervention recommended.");
+  }
+  ids.forEach(function(i){document.getElementById(i).addEventListener("input",render)});
+  document.getElementById("roll").addEventListener("click",function(){jitter();render()});
+  render();
+})();
+</script>
+</body>
+</html>
